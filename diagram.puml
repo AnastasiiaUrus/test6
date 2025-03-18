@@ -1,0 +1,128 @@
+@startuml
+abstract class Figure {
+    + {abstract} dimension(): int
+    + {abstract} perimeter(): float
+    + {abstract} square(): float
+    + {abstract} squareSurface(): float
+    + {abstract} squareBase(): float
+    + {abstract} height(): float
+    + {abstract} volume(): float
+}
+
+abstract class Figure2D {
+    + dimension(): int
+    + squareSurface(): None
+    + squareBase(): None
+    + height(): None
+    + volume(): float
+}
+
+abstract class Figure3D {
+    + dimension(): int
+    + perimeter(): None
+    + square(): None
+    + volume(): float
+}
+
+class Triangle {
+    - a: float
+    - b: float
+    - c: float
+    + perimeter(): float
+    + square(): float
+}
+
+class Rectangle {
+    - length: float
+    - width: float
+    + perimeter(): float
+    + square(): float
+}
+
+class Trapezoid {
+    - a: float
+    - b: float
+    - c: float
+    - d: float
+    + perimeter(): float
+    + square(): float
+}
+
+class Parallelogram {
+    - base: float
+    - side: float
+    - height: float
+    + perimeter(): float
+    + square(): float
+}
+
+class Circle {
+    - radius: float
+    + perimeter(): float
+    + square(): float
+}
+
+class Ball {
+    - radius: float
+    + squareSurface(): float
+    + volume(): float
+}
+
+class TriangularPyramid {
+    - height: float
+    + squareSurface(): float
+    + squareBase(): float
+    + volume(): float
+}
+
+class QuadrangularPyramid {
+    - height: float
+    + squareSurface(): float
+    + squareBase(): float
+    + volume(): float
+}
+
+class RectangularParallelepiped {
+    - height: float
+    + squareSurface(): float
+    + squareBase(): float
+    + volume(): float
+}
+
+class Cone {
+    - height: float
+    + squareSurface(): float
+    + squareBase(): float
+    + volume(): float
+}
+
+class TriangularPrism {
+    - height: float
+    + squareSurface(): float
+    + squareBase(): float
+    + volume(): float
+}
+
+Figure <|-- Figure2D
+Figure <|-- Figure3D
+
+Figure2D <|-- Triangle
+Figure2D <|-- Rectangle
+Figure2D <|-- Trapezoid
+Figure2D <|-- Parallelogram
+Figure2D <|-- Circle
+
+Figure3D <|-- Ball
+Figure3D <|-- TriangularPyramid
+Figure3D <|-- QuadrangularPyramid
+Figure3D <|-- RectangularParallelepiped
+Figure3D <|-- Cone
+Figure3D <|-- TriangularPrism
+
+Triangle <|-- TriangularPyramid
+Triangle <|-- TriangularPrism
+Rectangle <|-- QuadrangularPyramid
+Rectangle <|-- RectangularParallelepiped
+Circle <|-- Cone
+
+@enduml 

@@ -2,4 +2,10 @@ Triangle 3 4 5
 Rectangle 5 4
 Trapeze 6 4 5 5
 Parallelogram 5 4 3
-Circle 3 
+Circle 3
+Ball 3
+TriangularPyramid 4 6
+QuadrangularPyramid 5 4 6
+RectangularParallelepiped 4 3 5
+Cone 3 5
+TriangularPrism 3 4 5 4 

@@ -1,11 +1,14 @@
-from shapes import Triangle, Rectangle, Trapezoid, Parallelogram, Circle
+from figures import (Triangle, Rectangle, Trapezoid, Parallelogram, Circle,
+                    Ball, TriangularPyramid, QuadrangularPyramid,
+                    RectangularParallelepiped, Cone, TriangularPrism)
 
-def create_shape(shape_type: str, params: list) -> 'Shape':
+def create_shape(shape_type: str, params: list) -> 'Figure':
     """
     Create shape object based on type and parameters
     Створити об'єкт фігури на основі типу та параметрів
     """
     params = [float(p) for p in params]  # Convert strings to float
+    
     if shape_type == "Triangle":
         return Triangle(*params)
     elif shape_type == "Rectangle":
@@ -16,13 +19,25 @@ def create_shape(shape_type: str, params: list) -> 'Shape':
         return Parallelogram(*params)
     elif shape_type == "Circle":
         return Circle(*params)
+    elif shape_type == "Ball":
+        return Ball(*params)
+    elif shape_type == "TriangularPyramid":
+        return TriangularPyramid(*params)
+    elif shape_type == "QuadrangularPyramid":
+        return QuadrangularPyramid(*params)
+    elif shape_type == "RectangularParallelepiped":
+        return RectangularParallelepiped(*params)
+    elif shape_type == "Cone":
+        return Cone(*params)
+    elif shape_type == "TriangularPrism":
+        return TriangularPrism(*params)
     else:
         raise ValueError(f"Unknown shape type: {shape_type}")
 
 def process_file(filename: str):
     """
-    Process input file and find shapes with maximum area and perimeter
-    Обробити вхідний файл та знайти фігури з максимальною площею та периметром
+    Process input file and find shape with maximum volume
+    Обробити вхідний файл та знайти фігуру з найбільшим об'ємом
     """
     shapes = []
     
@@ -47,19 +62,22 @@ def process_file(filename: str):
         print("No valid shapes found in the file")
         return
     
-    # Find shape with maximum area
-    max_area_shape = max(shapes, key=lambda s: s.area())
-    # Find shape with maximum perimeter
-    max_perimeter_shape = max(shapes, key=lambda s: s.perimeter())
+    # Find shape with maximum volume (area for 2D, volume for 3D)
+    max_volume_shape = max(shapes, key=lambda s: s.volume())
     
     print(f"\nResults for {filename}:")
-    print("Shape with maximum area:")
-    print(f"Type: {type(max_area_shape).__name__}")
-    print(f"Area: {max_area_shape.area():.2f}")
+    print(f"Shape with maximum volume/area:")
+    print(f"Type: {type(max_volume_shape).__name__}")
+    print(f"Dimension: {max_volume_shape.dimension()}D")
     
-    print("\nShape with maximum perimeter:")
-    print(f"Type: {type(max_perimeter_shape).__name__}")
-    print(f"Perimeter: {max_perimeter_shape.perimeter():.2f}")
+    if max_volume_shape.dimension() == 2:
+        print(f"Area: {max_volume_shape.volume():.2f}")
+        print(f"Perimeter: {max_volume_shape.perimeter():.2f}")
+    else:
+        print(f"Volume: {max_volume_shape.volume():.2f}")
+        print(f"Surface area: {max_volume_shape.square_surface():.2f}")
+        print(f"Base area: {max_volume_shape.square_base():.2f}")
+        print(f"Height: {max_volume_shape.height():.2f}")
 
 def main():
     """
